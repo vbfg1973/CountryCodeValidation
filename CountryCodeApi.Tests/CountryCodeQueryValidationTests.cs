@@ -17,7 +17,7 @@ namespace CountryCodeApi.Tests
         public void Given_Null_Country_Code_Validation_Succeeds()
         {
             // Arrange
-            var queryObject = new CountryCodeQuery();
+            var queryObject = new CountryCodeQuery() { CountryCode = null };
 
             // Act
             var validationResult = _validator.Validate(queryObject);
@@ -134,7 +134,8 @@ namespace CountryCodeApi.Tests
                 .Errors
                 .Select(err => err.ErrorMessage)
                 .Should()
-                .Contain("Country code must be two characters long"); // This message is defined in the validator explicitly
+                .Contain(
+                    "Country code must be two characters long"); // This message is defined in the validator explicitly
         }
     }
 }

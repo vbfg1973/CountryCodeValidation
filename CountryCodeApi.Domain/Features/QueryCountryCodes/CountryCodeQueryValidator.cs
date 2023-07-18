@@ -21,8 +21,8 @@ namespace CountryCodeApi.Domain.Features.QueryCountryCodes
                 .Must(countryCode => countryCode.IsAlpha2CountryCodeValid())
                 .WithMessage("Not a valid country code")
 
-                // RuleSet kicks in only when CountryCode is not null or empty
-                .When(query => !string.IsNullOrEmpty(query.CountryCode));
+                // RuleSet kicks in only when CountryCode is not null or empty (But the Length criteria will throw an error when it is empty)
+                .When(query => query.CountryCode != null);
         }
     }
 }
